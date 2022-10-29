@@ -10,6 +10,7 @@
 #include <limits.h>
 #include <string.h>
 #include <time.h>
+#include <sys/time.h>
 
 #define ARRAY_SIZE(a) (sizeof(a) / sizeof((a)[0]))
 
@@ -250,14 +251,17 @@ int main(int argc, char *argv[])
     printf("max speed: %d Hz (%d KHz)\n", speed, speed/1000);
 	//int index = 0 ;
    //	while(index < 10 ){
+   //struct timeval stop, start;
+   //gettimeofday(&start, NULL);
    //printf("capture\r\n");
     while(status_bits != 0x0f) { transfer(fd); }
-
-	save_pgm_file(4) ;
+   //gettimeofday(&stop, NULL);
+   //printf("took %lu ms\n", ((stop.tv_sec - start.tv_sec) * 1000000 + stop.tv_usec - start.tv_usec)/1000); 
+	save_pgm_file(index) ;
 //	sleep(8);
 	printf("cap index %d\r\n" , index);
 	//sleep(1);
-	print_image() ;
+	//print_image() ;
 	index++ ;
 	close(fd);
          status_bits = 0;
